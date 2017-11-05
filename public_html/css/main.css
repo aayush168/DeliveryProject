@@ -11,6 +11,12 @@ a{
     border-radius: 5px;
     color: #333;
 }
+ul{
+    list-style-type: none;
+}
+li{
+    list-style-type: none;
+}
 .headBody{
     overflow: auto;
     padding: 10px;
