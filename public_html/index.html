@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css"/>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--        <script src="js/Jscript.js"></script>-->
+    </head>
+    <body>
+        <div class="main">
+        <div class="headBody">
+            <div class="title">
+                <div class="titleLeft">
+                    Food House
+                </div>
+            </div>
+             </div>
+            <div class="titleRight">
+                    <span class="loginbox">Sign-Up</span>
+                    <span class="loginbox"><i class="fa fa-user-o" aria-hidden="true"></i> Login</span>
+                </div>
+            <div class="mainBody">
+                <span class="secondaryTitle">Our Starters</span><br>
+                <ul>
+                <li>
+                    Chicken Biryani<br><br>
+                    <img src="burger.jpg" class="menu" alt=""/><br>
+                Price Rs 250<br><br>
+                <a href="#" class="add-to-cart" data-name="Chicken Biryani" data-price="250">Add To Cart</a>
+                </li>
+                      
+                <li>
+                    <br>
+                    Veg Biryani<br><br>
+                    <img src="momo.jpeg" class="menu" alt=""/><br>
+                Price Rs 150<br><br>
+               
+                <a href="#" class="add-to-cart" data-name="Veg Biryani" data-price="150">Add To Cart</a>
+                </li>
+                </ul>
+                <br>
+            </div>
+       </div>
+        <br>
+        <br>
+      
+        <div style="text-align: center; font-size: 18px;">
+            <button id="clear-cart">Clear Cart</button><br><br>
+            <i class="fa fa-shopping-basket" aria-hidden="true"></i> Cart Details<br><br>
+            <ul id="show-cart">
+                
+            </ul>
+        </div>
+        <script>
+                $(".add-to-cart").click(function(event){
+    event.preventDefault();
+    var name=$(this).attr("data-name");
+     var price= Number($(this).attr("data-price"));
+     addItemToCart(name,price,1);
+     displayCart();
+    });
+
+function displayCart(){
+    var cartArray = listCart();
+    var output ="";
+    for (var i in cartArray){
+        output+= "<li>"+cartArray[i].name+" "+cartArray[i].count+"</li><br>";
+    }
+    $("#show-cart").html(output);
+}
+
+
+
+
+var cart =[];
+var Item = function(name,price,count){
+    this.name = name;
+    this.price = price;
+    this.count = count;
+}
+function addItemToCart(name, price, count){
+    for (var i in cart){
+        if(cart[i].name === name){
+            cart[i].count += count;
+            return;
+        }
+    }
+    var item= new Item(name, price, count);
+    cart.push(item);
+    saveCart();
+}
+
+function removeItemFromCart(name){
+     for (var i in cart){
+        if(cart[i].name === name){
+           cart[i].count -- ;
+           if(cart[i].count === 0){
+               cart.splice(i,1);
+           }
+           break;
+        }
+    }
+    saveCart();
+}
+
+function removeItemFromCartAll(name){
+    for (var i in cart){
+        if (cart[i].name){
+            cart.splice(i,1);
+             break;
+        }
+    }
+    saveCart();
+}
+function clearCart(){
+    clear = [];
+    saveCart();
+}
+
+function countCart(){
+    var totalCount =0;
+    for (var i in cart){
+        totalCount += cart[i].count;
+    }
+    return totalCount;
+}
+
+function totalCart(){
+    var totalCost = 0;
+    for (var i in cart){
+        totalCost +=cart[i].price;
+    }
+    return totalCost;
+}
+
+function listCart(){
+    var cartCopy = [];
+    for (var i in cart){
+        var item = cart[i];
+        var itemCopy = [];
+        for (var p in item){
+            itemCopy[p] = item[p];
+        }
+        cartCopy.push(itemCopy);
+    }
+    return cartCopy;
+}
+
+function saveCart(){
+    localStorage.setItem("shoppingCart",JSON.stringify(cart));
+}
+
+function loadCart(){
+    cart = JSON.parse( localStorage.getItem("shoppingCart"));
+}
+        </script>
+    </body>
+</html>

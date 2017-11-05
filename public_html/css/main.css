@@ -1,0 +1,65 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+a{
+    text-decoration: none;
+    padding: 5px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.headBody{
+    overflow: auto;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 1px #eee;
+}
+.title{
+/*    border-bottom: 1px solid #ccc;*/
+    overflow: auto;
+    padding: 10px 0;
+}
+.titleLeft{
+    width: 100%;
+   
+    font-size: 32px;
+    
+}
+.titleRight{
+    width: 100%;
+    text-align: right;
+    font-size: 18px;
+    padding: 8px 0;
+   
+}
+.loginbox{
+    padding: 0 10px;
+}
+.mainBody{
+    padding: 0px 10px;
+    overflow: auto;
+    text-align: center;
+}
+
+.secondaryTitle{
+    font-size: 24px;
+    padding: 10px 0;
+    display: inline-block;
+}
+.menu{
+    width: 200px;
+    height: 150px;
+}
+select{
+    padding: 5px;
+    border: 1px solid #eee;
+}
+button{
+    padding: 5px 20px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+
